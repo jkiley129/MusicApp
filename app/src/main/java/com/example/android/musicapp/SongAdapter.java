@@ -4,11 +4,12 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class SongAdapter {
+public class SongAdapter extends ArrayAdapter<Song> {
 
     private static final String LOG_TAG = SongAdapter.class.getSimpleName();
 
@@ -27,13 +28,13 @@ public class SongAdapter {
 
         if(listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.list_item, parent, false);
+                    R.layout.song_item, parent, false);
         }
-        Word local_word = getItem(position);
-        TextView miwokTextView = (TextView) listItemView.findViewById(R.id.list_item_title);
-        miwokTextView.setText(local_word.getMiwokTranslation());
-        TextView defaultTextView = (TextView) listItemView.findViewById(R.id.list_item_subtitle);
-        defaultTextView.setText(local_word.getDefaultTranslation());
+        Song local_song = getItem(position);
+        TextView miwokTextView = (TextView) listItemView.findViewById(R.id.song_item_title);
+        miwokTextView.setText(local_song.getName());
+        TextView defaultTextView = (TextView) listItemView.findViewById(R.id.song_item_artist);
+        defaultTextView.setText(local_song.getArtist());
 
         return listItemView;
     }
