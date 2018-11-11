@@ -21,12 +21,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        songs.add(new Song("In The End", "Linkin Park", ""));
-        songs.add(new Song("The Hand That Feeds", "Nine Inch Nails", ""));
-        songs.add(new Song("Hysteria", "Muse", ""));
-        songs.add(new Song("Bottle It In", "Kurt Vile", ""));
-        songs.add(new Song("Paranoid Android", "Radiohead", ""));
-        songs.add(new Song("Epoch", "Tycho", ""));
+        songs.add(new Song("In The End", "Linkin Park", "Hybrid Theory"));
+        songs.add(new Song("The Hand That Feeds", "Nine Inch Nails", "With Teeth"));
+        songs.add(new Song("Hysteria", "Muse", "Absolution"));
+        songs.add(new Song("Bottle It In", "Kurt Vile", "Bottle It In"));
+        songs.add(new Song("Paranoid Android", "Radiohead", "OK Computer"));
+        songs.add(new Song("Epoch", "Tycho", "Epoch"));
 
         ArrayAdapter<Song> itemsAdapter = new SongAdapter(this, songs);
 
@@ -38,10 +38,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if (position == 0) {
-                    Intent nextActivity = new Intent(view.getContext(), NowPlayingActivity.class);
-                    startActivity(nextActivity);
-                }
+                Intent nextActivity = new Intent(view.getContext(), NowPlayingActivity.class);
+                nextActivity.putExtra("Position", position);
+                startActivity(nextActivity);
             }
         });
     }
